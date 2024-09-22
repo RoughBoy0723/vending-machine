@@ -2,6 +2,9 @@
 #define WIDGET_H
 
 #include <QWidget>
+#include <QString>
+
+using namespace std;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -17,6 +20,8 @@ public:
     Widget(QWidget *parent = nullptr);
     void changeMoney(int coin);
     void changeStatus();
+    QString change();
+
     int money = 0;
 
     ~Widget();

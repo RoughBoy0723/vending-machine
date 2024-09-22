@@ -1,6 +1,9 @@
 #include "widget.h"
 #include "./ui_widget.h"
 #include<QMessageBox>
+#include <iostream>
+#include <sstream>
+#include <QString>
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -104,10 +107,30 @@ void Widget::on_pbCoffe_clicked()
     changeStatus();
 }
 
+QString Widget::change(){
+    int c10, c50, c100, c500, lc;
+
+    c500 = money / 500;
+    c100 = (money % 500) / 100;
+    c50 = (money % 100) / 50;
+    c10 = (money % 50) / 10;
+
+    stringstream result;
+    result << "500원은 " << c500 << "개\n"
+           << "100원은 " << c100 << "개\n"
+           << "50원은 " << c50 << "개\n"
+           << "10원은 " << c10 << "개";
+
+    QString qsm = QString::fromStdString(result.str());
+
+    return qsm;
+}
+
 void Widget::on_pbReset_clicked()
 {
     QMessageBox mb;
-    mb.information(nullptr,"Title","Message");
+
+    mb.information(nullptr, "Change", change());
 }
 
 
